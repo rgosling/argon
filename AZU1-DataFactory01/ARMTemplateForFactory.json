@@ -1,0 +1,94 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "AZU1-DataFactory01"
+		},
+		"ls_dev_sq01_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_dev_sq01'"
+		},
+		"ls_adls2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://azu1storage2.dfs.core.windows.net/"
+		},
+		"ls_dev_sq01_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "SQL01-Dev.aitx.com\\fms"
+		},
+		"ls_dev_sq01_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "SalesForceProdAll"
+		},
+		"ls_dev_sq01_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "ADFSQLUSER"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_adls2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('ls_adls2_properties_typeProperties_url')]"
+				},
+				"connectVia": {
+					"referenceName": "AZU1-DataFactory01-PEP",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/AZU1-DataFactory01-PEP')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_dev_sq01')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "IaaS server instance",
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"server": "[parameters('ls_dev_sq01_properties_typeProperties_server')]",
+					"database": "[parameters('ls_dev_sq01_properties_typeProperties_database')]",
+					"encrypt": "optional",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('ls_dev_sq01_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('ls_dev_sq01_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "AZU1-DataFactory01-PEP",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/AZU1-DataFactory01-PEP')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AZU1-DataFactory01-PEP')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		}
+	]
+}
