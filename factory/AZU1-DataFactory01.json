@@ -1,0 +1,9 @@
+{
+	"name": "AZU1-DataFactory01",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e1b64bca-4979-4ec8-ab37-2886e0e4e3ba",
+		"tenantId": "4f7d2c9c-b565-4097-a49c-a28dea1c57ea"
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"name": "ls_adls2",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://azu1storage2.dfs.core.windows.net/"
+		},
+		"connectVia": {
+			"referenceName": "AZU1-DataFactory01-PEP",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

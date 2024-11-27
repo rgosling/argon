@@ -1,0 +1,22 @@
+{
+	"name": "ls_dev_sq01",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "IaaS server instance",
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "SQL01-Dev.aitx.com\\fms",
+			"database": "SalesForceProdAll",
+			"encrypt": "optional",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "ADFSQLUSER",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIwYmJjYzQ4Yi00MzZlLTRjMzYtOTNjYy03YWMxOGEyYTgwZmYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "AZU1-DataFactory01-PEP",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

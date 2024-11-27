@@ -1,0 +1,6 @@
+{
+	"name": "AZU1-DataFactory01-PEP",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
