@@ -1,6 +1,35 @@
 {
 	"name": "pl_copy_data",
 	"properties": {
+		"activities": [
+			{
+				"name": "lk_jobs",
+				"description": "Get a list of jobs to run",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "SELECT group_label\n\t,source_database\n\t,source_schema\n\t,source_table\n\t,source_key_columnlist\n\t,source_extract_sql\n\t,data_lake_container\n\t,data_lake_folder\nFROM dbo.adf_control_ingest\nWHERE is_active_flag = 'Y'",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_sqlserver",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			}
+		],
 		"annotations": []
 	}
 }
