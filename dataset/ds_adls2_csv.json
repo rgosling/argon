@@ -6,6 +6,14 @@
 			"referenceName": "ls_adls2",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"p_path": {
+				"type": "string"
+			},
+			"p_name": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
