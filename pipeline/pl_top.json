@@ -2,6 +2,25 @@
 	"name": "pl_top",
 	"properties": {
 		"description": "Top level pipeline",
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"description": "Execute the second pipeline",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_copy_data",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
 		"annotations": []
 	}
 }
