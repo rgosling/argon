@@ -1,0 +1,13 @@
+{
+	"name": "ds_sqlserver",
+	"properties": {
+		"description": "Generic dataset for sql server",
+		"linkedServiceName": {
+			"referenceName": "ls_dev_sq01",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
