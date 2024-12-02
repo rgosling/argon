@@ -6,6 +6,14 @@
 			"referenceName": "ls_dev_sq01",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"p_schema": {
+				"type": "string"
+			},
+			"p_table": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": []
