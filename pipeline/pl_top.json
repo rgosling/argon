@@ -1,0 +1,7 @@
+{
+	"name": "pl_top",
+	"properties": {
+		"description": "Top level pipeline",
+		"annotations": []
+	}
+}
