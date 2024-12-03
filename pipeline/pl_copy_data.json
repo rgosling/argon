@@ -18,7 +18,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "SELECT group_label\n\t,source_database\n\t,source_schema\n\t,source_table\n\t,source_key_columnlist\n\t,source_extract_sql\n\t,data_lake_container\n\t,data_lake_full_path\nFROM dbo.adf_control_ingest\nWHERE is_active_flag = 'Y'",
+						"sqlReaderQuery": "SELECT group_label\n\t,source_database\n\t,source_schema\n\t,source_table\n\t,source_key_columnlist\n\t,source_extract_sql\n\t,source_datalake_container\n\t,source_datalake_path\nFROM dbo.adf_control\nWHERE is_active_flag = 'Y'",
 						"queryTimeout": "02:00:00",
 						"isolationLevel": "ReadUncommitted",
 						"partitionOption": "None"
@@ -28,7 +28,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"p_schema": "dbo",
-							"p_table": "adf_control_ingest"
+							"p_table": "adf_control"
 						}
 					},
 					"firstRowOnly": false
@@ -100,13 +100,14 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"p_container": {
-											"value": "@activity('lk_jobs').output.data_lake_container.value",
+											"value": "@item().source_datalake_container",
 											"type": "Expression"
 										},
 										"p_path": {
-											"value": "@activity('lk_jobs').output.data_lake_fullpath.value",
+											"value": "@item().source_datalake_path",
 											"type": "Expression"
-										}
+										},
+										"p_filename": "none"
 									}
 								}
 							],
@@ -116,11 +117,11 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"p_schema": {
-											"value": "@activity('lk_jobs').output.target_db_schema.value",
+											"value": "@item().target_db_schema",
 											"type": "Expression"
 										},
 										"p_table": {
-											"value": "@activity('lk_jobs').output.target_db_table.value",
+											"value": "@item().target_db_table",
 											"type": "Expression"
 										}
 									}
