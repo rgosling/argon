@@ -18,7 +18,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "SELECT group_label\n\t,source_database\n\t,source_schema\n\t,source_table\n\t,source_key_columnlist\n\t,source_extract_sql\n\t,source_datalake_container\n\t,source_datalake_path\nFROM dbo.adf_control\nWHERE is_active_flag = 'Y'",
+						"sqlReaderQuery": "SELECT group_label\n\t,source_datalake_container\n\t,source_datalake_path\n       ,target_db_schema\n       ,target_db_table\nFROM dbo.adf_control\nWHERE is_active_flag = 'Y'",
 						"queryTimeout": "02:00:00",
 						"isolationLevel": "ReadUncommitted",
 						"partitionOption": "None"
@@ -71,12 +71,16 @@
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
+										"wildcardFolderPath": {
+											"value": "@item().source_datalake_path",
+											"type": "Expression"
+										},
 										"wildcardFileName": "*",
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
 										"type": "DelimitedTextReadSettings",
-										"skipLineCount": 2
+										"skipLineCount": 1
 									}
 								},
 								"sink": {
