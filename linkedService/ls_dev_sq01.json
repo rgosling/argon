@@ -12,7 +12,7 @@
 			"trustServerCertificate": false,
 			"authenticationType": "SQL",
 			"userName": "ADFSQLUSER",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI1Njc2Njk1Ny1jY2VhLTRkNzktYmNmYy01M2FmNmEzMWY5NGIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyOWY0N2M0ZC01M2UwLTRkNWYtOTk2ZS05YzdjMDBhM2QwODgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "AZU1-DataFactory01-PEP",
