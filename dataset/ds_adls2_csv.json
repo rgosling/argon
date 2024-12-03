@@ -13,7 +13,7 @@
 			"p_path": {
 				"type": "string"
 			},
-			"p_name": {
+			"p_filename": {
 				"type": "string"
 			}
 		},
@@ -21,7 +21,15 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@dataset().p_path",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().p_container",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
