@@ -18,19 +18,116 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "SELECT group_label\n\t,source_database\n\t,source_schema\n\t,source_table\n\t,source_key_columnlist\n\t,source_extract_sql\n\t,data_lake_container\n\t,data_lake_folder\nFROM dbo.adf_control_ingest\nWHERE is_active_flag = 'Y'",
+						"sqlReaderQuery": "SELECT group_label\n\t,source_database\n\t,source_schema\n\t,source_table\n\t,source_key_columnlist\n\t,source_extract_sql\n\t,data_lake_container\n\t,data_lake_full_path\nFROM dbo.adf_control_ingest\nWHERE is_active_flag = 'Y'",
 						"queryTimeout": "02:00:00",
+						"isolationLevel": "ReadUncommitted",
 						"partitionOption": "None"
 					},
 					"dataset": {
 						"referenceName": "ds_sqlserver",
 						"type": "DatasetReference",
 						"parameters": {
-							"p_schema": "none",
-							"p_table": "none"
+							"p_schema": "dbo",
+							"p_table": "adf_control_ingest"
 						}
 					},
 					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "lk_jobs",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('lk_jobs').output",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"wildcardFileName": "*",
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings",
+										"skipLineCount": 2
+									}
+								},
+								"sink": {
+									"type": "SqlServerSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_adls2_csv",
+									"type": "DatasetReference",
+									"parameters": {
+										"p_path": {
+											"value": "@activity('lk_jobs').output.data_lake_container.value",
+											"type": "Expression"
+										},
+										"p_name": {
+											"value": "@activity('lk_jobs').output.data_lake_fullpath.value",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_sqlserver",
+									"type": "DatasetReference",
+									"parameters": {
+										"p_schema": {
+											"value": "@activity('lk_jobs').output.target_db_schema.value",
+											"type": "Expression"
+										},
+										"p_table": {
+											"value": "@activity('lk_jobs').output.target_db_table.value",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
 				}
 			}
 		],
