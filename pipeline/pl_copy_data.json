@@ -4,7 +4,7 @@
 		"activities": [
 			{
 				"name": "lk_jobs",
-				"description": "Read the dbo.adf_control_ingest table for jobs to run.",
+				"description": "Read the dbo.adf_control table for jobs to run.",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
