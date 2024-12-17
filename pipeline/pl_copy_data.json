@@ -186,7 +186,7 @@
 									},
 									"CopyActivity_Start_Time": {
 										"value": {
-											"value": "@convertFromUtc(utcnow(),'Eastern Standard Time', 'yyyy-MM-dd HH:mm:ss')",
+											"value": "@{activity('cp_data').output.executionDetails[0].start}",
 											"type": "Expression"
 										},
 										"type": "String"
@@ -280,7 +280,7 @@
 											"value": "@{pipeline().TriggerTime}",
 											"type": "Expression"
 										},
-										"type": "String"
+										"type": "Datetime"
 									}
 								}
 							},
