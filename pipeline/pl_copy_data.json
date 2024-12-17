@@ -36,6 +36,7 @@
 			},
 			{
 				"name": "fe_job_entry",
+				"description": "For each job entry in adf.dbo.adf_control, dynamically build and execute the pipeline.",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -145,6 +146,34 @@
 									}
 								}
 							]
+						},
+						{
+							"name": "sp_save_jobstats",
+							"description": "Save the job information statistics like duration",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "cp_data",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[save_df_run_stats]"
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_dev_sq01",
+								"type": "LinkedServiceReference"
+							}
 						}
 					]
 				}
