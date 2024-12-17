@@ -288,6 +288,136 @@
 								"referenceName": "ls_dev_sq01",
 								"type": "LinkedServiceReference"
 							}
+						},
+						{
+							"name": "Stored procedure1",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "cp_data",
+									"dependencyConditions": [
+										"Failed"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[save_df_error_stats]",
+								"storedProcedureParameters": {
+									"CopyActivity_End_Time": {
+										"value": {
+											"value": "@{utcNow()}",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"CopyActivity_errorMessage": {
+										"value": {
+											"value": "@{activity('cp_data').error.message}",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"CopyActivity_queuingDuration_in_secs": {
+										"value": {
+											"value": "@{activity('cp_data').output.executionDetails[0].detailedDurations.queuingDuration}",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"CopyActivity_Start_Time": {
+										"value": {
+											"value": "@{activity('cp_data').output.executionDetails[0].start}",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"CopyActivity_transferDuration_in_secs": {
+										"value": {
+											"value": "@{activity('cp_data').output.executionDetails[0].detailedDurations.transferDuration}",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"copyDuration_in_secs": {
+										"value": {
+											"value": "@activity('cp_data').output.copyDuration",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"DataFactory_Name": {
+										"value": {
+											"value": "@{pipeline().DataFactory}",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"effectiveIntegrationRuntime": {
+										"value": {
+											"value": "@{activity('cp_data').output.effectiveIntegrationRuntime}",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"Execution_Status": {
+										"value": {
+											"value": "@{activity('cp_data').output.executionDetails[0].status}",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"No_ParallelCopies": {
+										"value": {
+											"value": "@{activity('cp_data').output.usedParallelCopies}",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"Pipeline_Name": {
+										"value": {
+											"value": "@{pipeline().Pipeline}",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"RowsCopied": {
+										"value": "",
+										"type": "String"
+									},
+									"RowsRead": {
+										"value": "",
+										"type": "String"
+									},
+									"RunId": {
+										"value": "",
+										"type": "String"
+									},
+									"Source_Type": {
+										"value": "",
+										"type": "String"
+									},
+									"Sync_Type": {
+										"value": "",
+										"type": "String"
+									},
+									"TriggerTime": {
+										"value": "",
+										"type": "DateTime"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_dev_sq01",
+								"type": "LinkedServiceReference"
+							}
 						}
 					]
 				}
