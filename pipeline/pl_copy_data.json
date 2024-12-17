@@ -35,7 +35,7 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "fe_job_entry",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -54,7 +54,7 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "Copy data1",
+							"name": "cp_data",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
