@@ -179,7 +179,7 @@
 									},
 									"CopyActivity_queuingDuration_in_secs": {
 										"value": {
-											"value": "@activity('cp_data').output.copyQueueing",
+											"value": "@{activity('cp_data').output.executionDetails[0].detailedDurations.queuingDuration}",
 											"type": "Expression"
 										},
 										"type": "String"
