@@ -389,28 +389,53 @@
 										"type": "String"
 									},
 									"RowsCopied": {
-										"value": "",
+										"value": {
+											"value": "@{activity('cp_data').output.rowsCopied}",
+											"type": "Expression"
+										},
 										"type": "String"
 									},
 									"RowsRead": {
-										"value": "",
+										"value": {
+											"value": "@{activity('cp_data').output.dataRead}",
+											"type": "Expression"
+										},
 										"type": "String"
 									},
 									"RunId": {
-										"value": "",
+										"value": {
+											"value": "@{pipeline().RunId}",
+											"type": "Expression"
+										},
 										"type": "String"
 									},
 									"Source_Type": {
-										"value": "",
+										"value": {
+											"value": "@{activity('cp_data').output.executionDetails[0].source.type}",
+											"type": "Expression"
+										},
 										"type": "String"
 									},
 									"Sync_Type": {
-										"value": "",
+										"value": {
+											"value": "@{activity('cp_data').output.executionDetails[0].sink.type}",
+											"type": "Expression"
+										},
 										"type": "String"
 									},
 									"TriggerTime": {
-										"value": "",
-										"type": "DateTime"
+										"value": {
+											"value": "@{pipeline().TriggerTime}",
+											"type": "Expression"
+										},
+										"type": "Datetime"
+									},
+									"ErrorCode": {
+										"value": {
+											"value": "@{activity('cp_data').error.errorCode}",
+											"type": "Expression"
+										},
+										"type": "String"
 									}
 								}
 							},
