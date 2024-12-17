@@ -319,7 +319,7 @@
 										},
 										"type": "String"
 									},
-									"CopyActivity_errorMessage": {
+									"ErrorMessage": {
 										"value": {
 											"value": "@{activity('cp_data').error.message}",
 											"type": "Expression"
