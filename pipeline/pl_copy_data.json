@@ -133,7 +133,7 @@
 											"type": "Expression"
 										},
 										"p_filename": {
-											"value": "@concat(item().source_schema,item().source_table,'.csv')",
+											"value": "@concat(item().source_schema,'_',item().source_table,'.csv')",
 											"type": "Expression"
 										}
 									}
