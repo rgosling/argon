@@ -1,0 +1,31 @@
+{
+	"name": "trg_salesforce_full",
+	"properties": {
+		"description": "Get initial Salesforce pull from SQL DB to ADLS",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_copy_data",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Week",
+				"interval": 15,
+				"startTime": "2024-12-25T17:30:00",
+				"endTime": "2024-12-25T23:25:00",
+				"timeZone": "Central Standard Time",
+				"schedule": {
+					"weekDays": [
+						"Sunday"
+					]
+				}
+			}
+		}
+	}
+}
