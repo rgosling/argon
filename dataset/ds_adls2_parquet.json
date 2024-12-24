@@ -6,6 +6,20 @@
 			"referenceName": "ls_adls2",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"p_container": {
+				"type": "string",
+				"defaultValue": "bronze"
+			},
+			"p_filepath": {
+				"type": "string",
+				"defaultValue": "/"
+			},
+			"p_filename": {
+				"type": "string",
+				"defaultValue": "myfile.parquet"
+			}
+		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {

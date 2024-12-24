@@ -36,7 +36,7 @@
 			},
 			{
 				"name": "fe_job_entry",
-				"description": "For each job entry in adf.dbo.adf_control, dynamically build and execute the pipeline.",
+				"description": "For each entry in adf.job, dynamically build and execute the pipeline.",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -68,26 +68,18 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "DelimitedTextSource",
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"wildcardFolderPath": {
-											"value": "@item().source_datalake_path",
-											"type": "Expression"
-										},
-										"wildcardFileName": "*",
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "DelimitedTextReadSettings"
-									}
+									"type": "SqlServerSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
 								},
 								"sink": {
-									"type": "SqlServerSink",
-									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false,
-									"tableOption": "autoCreate"
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
 								},
 								"enableStaging": false,
 								"enableSkipIncompatibleRow": true,
@@ -115,35 +107,14 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "ds_adls2_csv",
-									"type": "DatasetReference",
-									"parameters": {
-										"p_container": {
-											"value": "@item().source_datalake_container",
-											"type": "Expression"
-										},
-										"p_path": {
-											"value": "@item().source_datalake_path",
-											"type": "Expression"
-										},
-										"p_filename": "none"
-									}
+									"referenceName": "ds_sqlserver",
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
 								{
-									"referenceName": "ds_sqlserver",
-									"type": "DatasetReference",
-									"parameters": {
-										"p_schema": {
-											"value": "@item().target_db_schema",
-											"type": "Expression"
-										},
-										"p_table": {
-											"value": "@item().target_db_table",
-											"type": "Expression"
-										}
-									}
+									"referenceName": "ds_adls2_parquet",
+									"type": "DatasetReference"
 								}
 							]
 						},

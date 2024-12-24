@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Generic dataset for sql server",
 		"linkedServiceName": {
-			"referenceName": "ls_dev_sq01",
+			"referenceName": "ls_dev_salesforce",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
