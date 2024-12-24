@@ -18,7 +18,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "SELECT top 1*\nFROM dbo.adf_job\nWHERE is_active = 'Y'",
+						"sqlReaderQuery": "SELECT *\nFROM dbo.adf_job\nWHERE is_active = 'Y'",
 						"queryTimeout": "02:00:00",
 						"isolationLevel": "ReadUncommitted",
 						"partitionOption": "None"
