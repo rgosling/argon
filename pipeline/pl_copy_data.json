@@ -32,7 +32,7 @@
 			},
 			{
 				"name": "fe_job_entry",
-				"description": "For each entry in adf.job, dynamically build and execute the pipeline.",
+				"description": "For each entry in adf_job, dynamically build and execute the pipeline.",
 				"type": "ForEach",
 				"dependsOn": [
 					{
