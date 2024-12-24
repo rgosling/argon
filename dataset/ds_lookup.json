@@ -1,0 +1,148 @@
+{
+	"name": "ds_lookup",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_dev_sq01",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "job_group",
+				"type": "varchar"
+			},
+			{
+				"name": "is_active",
+				"type": "char"
+			},
+			{
+				"name": "is_full_extract",
+				"type": "char"
+			},
+			{
+				"name": "source_server",
+				"type": "varchar"
+			},
+			{
+				"name": "source_database",
+				"type": "varchar"
+			},
+			{
+				"name": "source_schema",
+				"type": "varchar"
+			},
+			{
+				"name": "source_table",
+				"type": "varchar"
+			},
+			{
+				"name": "source_version",
+				"type": "varchar"
+			},
+			{
+				"name": "source_key_columnlist",
+				"type": "varchar"
+			},
+			{
+				"name": "source_extract_method",
+				"type": "varchar"
+			},
+			{
+				"name": "source_extract_sql",
+				"type": "varchar"
+			},
+			{
+				"name": "source_change_tracking_version",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "delta_create_watermark_col",
+				"type": "varchar"
+			},
+			{
+				"name": "delta_update_watermark_col",
+				"type": "varchar"
+			},
+			{
+				"name": "delta_last_watermark_datetime",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "source_datalake_container",
+				"type": "varchar"
+			},
+			{
+				"name": "source_datalake_path",
+				"type": "varchar"
+			},
+			{
+				"name": "source_datalake_filename",
+				"type": "varchar"
+			},
+			{
+				"name": "target_datalake_container",
+				"type": "varchar"
+			},
+			{
+				"name": "target_datalake_path",
+				"type": "varchar"
+			},
+			{
+				"name": "target_datalake_filename",
+				"type": "varchar"
+			},
+			{
+				"name": "target_server",
+				"type": "varchar"
+			},
+			{
+				"name": "target_database",
+				"type": "varchar"
+			},
+			{
+				"name": "target_schema",
+				"type": "varchar"
+			},
+			{
+				"name": "target_table",
+				"type": "varchar"
+			},
+			{
+				"name": "create_external_table_flag",
+				"type": "char"
+			},
+			{
+				"name": "ext_file_container",
+				"type": "varchar"
+			},
+			{
+				"name": "ext_schema",
+				"type": "varchar"
+			},
+			{
+				"name": "ext_file_name",
+				"type": "varchar"
+			},
+			{
+				"name": "ext_file_path",
+				"type": "varchar"
+			},
+			{
+				"name": "ext_file_format",
+				"type": "varchar"
+			},
+			{
+				"name": "load_date",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "adf_job"
+		}
+	}
+}
