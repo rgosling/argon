@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Get initial Salesforce pull from SQL DB to ADLS",
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
