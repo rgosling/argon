@@ -108,13 +108,37 @@
 							"inputs": [
 								{
 									"referenceName": "ds_sqlserver",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"p_schema": {
+											"value": "@item().source_schema",
+											"type": "Expression"
+										},
+										"p_table": {
+											"value": "@item().source_table",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
 								{
 									"referenceName": "ds_adls2_parquet",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"p_container": {
+											"value": "@item().target_datalake_container",
+											"type": "Expression"
+										},
+										"p_filepath": {
+											"value": "@item().target_datalake_filepath",
+											"type": "Expression"
+										},
+										"p_filename": {
+											"value": "@item().target_datalake_filename",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						},
