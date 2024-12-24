@@ -129,11 +129,11 @@
 											"type": "Expression"
 										},
 										"p_path": {
-											"value": "@concat('/',item().job_group,'/',item().source_schema,'_',item().source_table,'/',item().source_version,'/Full','/',item().source_schema,'_',item().source_table,'.csv')",
+											"value": "@concat('/',item().job_group,'/',item().source_schema,'_',item().source_table,'/',item().source_version,'/Full/',item().source_schema,'_',item().source_table)",
 											"type": "Expression"
 										},
 										"p_filename": {
-											"value": "@concat(item().source_table,'.csv')",
+											"value": "@concat(item().source_schema,item().source_table,'.csv')",
 											"type": "Expression"
 										}
 									}
