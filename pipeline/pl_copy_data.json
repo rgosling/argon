@@ -127,11 +127,11 @@
 											"type": "Expression"
 										},
 										"p_filepath": {
-											"value": "@item().target_datalake_path",
+											"value": "@item().target_datalake_filepath",
 											"type": "Expression"
 										},
 										"p_filename": {
-											"value": "@item().target_datalake_filename",
+											"value": "@concat(item().source_table,'.parquet')",
 											"type": "Expression"
 										}
 									}
