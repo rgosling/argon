@@ -18,7 +18,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "SELECT top 10 *\nFROM dbo.adf_job\nWHERE is_active = 'Y'",
+						"sqlReaderQuery": "SELECT top 1*\nFROM dbo.adf_job\nWHERE is_active = 'Y'",
 						"queryTimeout": "02:00:00",
 						"isolationLevel": "ReadUncommitted",
 						"partitionOption": "None"
@@ -127,7 +127,7 @@
 											"type": "Expression"
 										},
 										"p_filepath": {
-											"value": "@item().target_datalake_filepath",
+											"value": "@item().target_datalake_path",
 											"type": "Expression"
 										},
 										"p_filename": {
