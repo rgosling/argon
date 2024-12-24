@@ -1,0 +1,22 @@
+{
+	"name": "ls_dev_salesforce",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Dev Sakesforce",
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "azu1-dev-sql01\\FMS",
+			"database": "SalesForceProdAll",
+			"encrypt": "mandatory",
+			"trustServerCertificate": true,
+			"authenticationType": "SQL",
+			"userName": "ADFSQLUSER",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiMGFmMDk0Zi1kMGU5LTQ1OGUtODgzMi0wMTRmODc3NTc5ZDciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "AZU1-DataFactory01-PEP",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
