@@ -129,7 +129,7 @@
 											"type": "Expression"
 										},
 										"p_path": {
-											"value": "@item().target_datalake_path",
+											"value": "@concat('/',item().job_group,'/',item().source_schema,'_',item().source_table,'/',item().source_version,'/Full','/',item().source_schema,'_',item().source_table,'.csv')",
 											"type": "Expression"
 										},
 										"p_filename": {
